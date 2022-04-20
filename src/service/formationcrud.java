@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Observable;
 import java.util.logging.Level;
@@ -28,6 +29,8 @@ import pidevv.Datasource;
  * @author Ahmed
  */
 public class formationcrud implements NewInterface {
+    private PreparedStatement pst;
+
 
     private static formationcrud instance;
     private Statement st;
@@ -70,10 +73,10 @@ public class formationcrud implements NewInterface {
 
    
 
-    public void supprimerevent(int id) {
+    public void supprimerevent(String nom) {
 
         try {
-            String req2 = "DELETE FROM formmattion  WHERE  id='" + id + "'";
+            String req2 = "DELETE FROM formmattion  WHERE  nom='" + nom + "'";
 
             st.executeUpdate(req2);
             System.out.println("formation bien supprimer");
@@ -98,7 +101,7 @@ public class formationcrud implements NewInterface {
     }
 
     public boolean update(Formation ev, int ref, Date date_dep, Date date_fin) {
-        String qry = "UPDATE formmattion SET nom = '" + ev.getNom() + "', prix = '" + ev.getPrix() + "',start_date = '" + date_dep + "',end_date = '" + date_fin + "',location = '" + ev.getDescription() + "'WHERE id = '" + ref + "'";
+        String qry = "UPDATE formmattion SET nom = '" + ev.getNom() + "', prix = '" + ev.getPrix() + "',datede = '" + date_dep + "',datefi = '" + date_fin + "',description = '" + ev.getDescription() + "'WHERE id = '" + ref + "'";
 
         try {
             if (st.executeUpdate(qry) > 0) {
@@ -174,5 +177,80 @@ public class formationcrud implements NewInterface {
        
             return list;
         }
+     public void modifierFormationPST(Formation f) throws SQLException{
+        String req="update formmattion set nom=? ,description =?  ,prix=?  where nom=? ";
+        try {
+            pst=cnx.prepareStatement(req);
+            
+            pst.setString(1, f.getNom());
+           
+            pst.setString(2,f.getDescription());
+        
+            
+            pst.setInt(3,f.getPrix());
+            pst.setString(4, f.getNom());
+            
+            
+           // java.sql.Date sqlDate=new java.sql.Date(f.getDteAjout().getTime());
+            
+            //pst.setDate(4,sqlDate);
+            
+            
+            pst.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(CoursService.class.getName()).log(Level.SEVERE, null, ex);
+            pst=cnx.prepareStatement(req);
+        }
     
+     }
+     public void ajouterFormationPST(Formation c){
+    
+          
+          
+        String req="insert into formmattion (nom,description,prix,datede,datefi,image) values (?,?,?,?,?,?)";
+        try {
+            pst=cnx.prepareStatement(req);  
+            pst.setString(1, c.getNom());
+            pst.setString(2,c.getDescription());
+            pst.setInt(3,c.getPrix());
+            
+            
+            pst.setDate(4,c.getStart_date());
+            
+            
+            pst.setDate(5,c.getEnd_date());
+            pst.setString(6, c.getImage());
+            
+            
+            
+           
+            
+            
+  //          System.out.println(id_formation);
+            pst.executeUpdate();
+            
+        } catch (SQLException ex) {
+            System.out.println("hne");
+            Logger.getLogger(formationcrud.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+
+
+
+     }
+     public String countFormation() {
+
+        String req = "SELECT COUNT(*) FROM formmattion";
+        PreparedStatement pst;
+        try {
+            pst = cnx.prepareStatement(req);
+            pst.executeQuery(req);
+            ResultSet rs = pst.getResultSet();
+            rs.next();
+            return ("  " + rs.getInt("count(*)") + " formations");
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            return null;
+        }}
 }

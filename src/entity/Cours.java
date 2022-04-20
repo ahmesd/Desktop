@@ -12,11 +12,13 @@ import java.util.Date;
  */
 public class Cours {
      private int id;
+     private int idFormation;
     private String nom;
     private String description;
     private String video;
     private Date dteAjout;
     public Formation formation;
+    
     public Cours(int id, String nom, String description, String video) {
          this.id = id;
         this.nom = nom;
@@ -55,10 +57,11 @@ public class Cours {
         this.formation = formation;
     }
 
-    public Cours(int id,String nom, String description, int i) {
+    public Cours(int id,String nom, String description, int idFormation) {
         this.id = id;
         this.nom = nom;
         this.description = description;
+        this.idFormation = idFormation;
            //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -68,6 +71,23 @@ public class Cours {
         this.description = description;
         this.video = video ;
         this.formation = formation;
+    }
+
+    public Cours(String nom, String description, java.sql.Date dteAjout, int idFormation) {
+        this.nom = nom;
+        this.description = description;
+        this.dteAjout = dteAjout;
+        this.idFormation = idFormation;
+        
+//To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Cours(String nom, String description, int idFormation) {
+          this.nom = nom;
+        this.description = description;
+         
+        this.idFormation = idFormation;
+   
     }
 
     
@@ -134,6 +154,14 @@ public class Cours {
     @Override
     public String toString() {
         return "Cours{" + "id=" + id + ", nom=" + nom + ", description=" + description + ", video=" + video + ", dteAjout=" + dteAjout + ", formation=" + formation + '}';
+    }
+
+    public int getIdFormation() {
+        return idFormation;
+    }
+
+    public void setIdFormation(int idFormation) {
+        this.idFormation = idFormation;
     }
 
    

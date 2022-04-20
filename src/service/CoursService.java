@@ -7,6 +7,7 @@ package service;
 import entity.Cours;
 import entity.Formation;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,6 +25,7 @@ import pidevv.datas;
 public class CoursService implements NewInterfacej<Cours>  {
       private Connection cnx;
     private Statement ste;
+    private static CoursService instance;
    
     
     private PreparedStatement pst;
@@ -38,19 +40,20 @@ public void ajouterCoursPST(Cours c){
     
           
           
-        String req="insert into coursss (nom,description,video,formations_id) values (?,?,?,?)";
+        String req="insert into coursss (nom,description,video,dateajoutt,formations_id) values (?,?,?,?,?)";
         try {
             pst=connection.prepareStatement(req);  
             pst.setString(1, c.getNom());
             pst.setString(2,c.getDescription());
             pst.setString(3,c.getVideo());
+            pst.setInt(5,c.getIdFormation());
             
            // java.sql.Date sqlDate=new java.sql.Date(c.getDteAjout().getTime());
             
-           // pst.setDate(4,sqlDate);
+            pst.setDate(4, (Date) c.getDteAjout());
             
             
-            pst.setInt(4, c.getFormation().getId());
+            //pst.setInt(4, c.getFormation().getId());
             
             
   //          System.out.println(id_formation);
@@ -65,15 +68,15 @@ public void ajouterCoursPST(Cours c){
 
    
 
-   public List <Cours> readAll(int id){
-            String req="select* from coursss where formations_id = ?";          
+   public List <Cours> readAll(){
+            String req="select* from coursss ";          
             List <Cours> list=new ArrayList<>();
          try {
              pst=connection.prepareStatement(req);
-              pst.setInt(1,id); 
+               
             rs=pst.executeQuery();
             while(rs.next()){
-                list.add(new Cours(rs.getInt("id"),rs.getString("nom"), rs.getString("description"), rs.getString("video")));
+                list.add(new Cours(rs.getInt("id"),rs.getString("nom"), rs.getString("description"),rs.getInt("formations_id")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(formationcrud.class.getName()).log(Level.SEVERE, null, ex);
@@ -131,7 +134,7 @@ public void ajouterCoursPST(Cours c){
 
     
     public void modifierFormationPST(Cours f) throws SQLException{
-        String req="update coursss set nom=? ,description =?  ,video=?  where id=? ";
+        String req="update coursss set nom=? ,description =?  ,video=?  where nom=? ";
         try {
             pst=connection.prepareStatement(req);
             
@@ -141,7 +144,7 @@ public void ajouterCoursPST(Cours c){
         
             
             pst.setString(3,f.getVideo());
-            pst.setInt(4,f.getId());
+            pst.setString(4,f.getNom());
             
             
            // java.sql.Date sqlDate=new java.sql.Date(f.getDteAjout().getTime());
@@ -326,6 +329,37 @@ public void ajouterCoursPST(Cours c){
     
     
     
+    }
+      public static CoursService getInstance() {
+        if (instance == null) {
+            instance = new CoursService();
+        }
+        return instance;
+    }
+      public Cours getCarById(int id) {
+        String query = "SELECT * FROM coursss WHERE id ='" + id + "'";
+
+        try {
+            rs = ste.executeQuery(query);
+            while (rs.next()) {
+                Cours car = new Cours(rs.getInt("id"), rs.getString("nom"), rs.getString("description"));
+                return car;
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+      public void Delete_Car(String carNumber) {
+        try {
+            String query = "DELETE FROM coursss WHERE nom ='" + carNumber + "'";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.executeUpdate();
+            System.out.println("Car has been deleted");
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
     }
     
     

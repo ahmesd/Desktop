@@ -5,6 +5,14 @@
  */
 package controller;
 
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -19,6 +27,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import service.formationcrud;
 import entity.Formation;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import pidevv.Pidevv;
 import java.io.IOException;
 import java.net.URL;
@@ -43,7 +53,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.collections.transformation.FilteredList;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -92,6 +104,25 @@ public class ConsulterEventController implements Initializable {
     
     @FXML
     private TableView<Formation> tbl;
+ 
+    @FXML
+    private Button ajouterr;
+    @FXML
+    private TableColumn<Formation,String> imgee;
+    @FXML
+    private TableColumn<Formation, Date> datefinn;
+    private Button ccours;
+    @FXML
+    private Button imprimmer;
+    @FXML
+    private Button Stattt;
+    @FXML
+    private AnchorPane ge;
+    @FXML
+    private Label st;
+    private Button ref;
+    @FXML
+    private Button act;
     
     
     
@@ -107,10 +138,12 @@ public class ConsulterEventController implements Initializable {
         //table.setItems(obs);
       nom.setCellValueFactory(new PropertyValueFactory<Formation,String>("nom"));
         description.setCellValueFactory(new PropertyValueFactory<Formation,String>("description"));
-        date_dep.setCellValueFactory(new PropertyValueFactory<Formation,Date>("date_dep"));
+        date_dep.setCellValueFactory(new PropertyValueFactory<Formation,Date>("datede"));
+        datefinn.setCellValueFactory(new PropertyValueFactory<Formation,Date>("datefi"));
         
         prix.setCellValueFactory(new PropertyValueFactory<Formation,Integer>("prix"));
         id.setCellValueFactory(new PropertyValueFactory<Formation,Integer>("id"));
+        imgee.setCellValueFactory(new PropertyValueFactory<>("image"));
          
      
  FilteredList<Formation> filteredData = new FilteredList<>(FXCollections.observableArrayList(ev), b -> true);
@@ -178,10 +211,43 @@ public class ConsulterEventController implements Initializable {
 
     @FXML
     private void supprimer(ActionEvent Formation) {
+         Formation ev = tbl.getSelectionModel().getSelectedItem();
+        formationcrud udao = formationcrud.getInstance();
+        udao.supprimerevent(ev.getNom());
+        System.out.println(ev.getStart_date());
+        System.out.println(ev.getDescription());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Information Dialog");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Formation supprimer!");
+                        alert.show();
+
+        tbl.refresh();
     }
 
     @FXML
     private void modifier(ActionEvent Formation) {
+         Formation ev = tbl.getSelectionModel().getSelectedItem();
+        ConsulterEventController.nom_recup=ev.getNom();
+        ConsulterEventController.decriptionrecup=ev.getDescription();
+        ConsulterEventController.date_deprecup=ev.getStart_date();
+        ConsulterEventController.date_finrecup=ev.getEnd_date();
+        ConsulterEventController.prixrecup=ev.getPrix();
+                ConsulterEventController.id_rec=ev.getId();
+
+        System.out.println(ev.getId());
+         try {
+            Parent root = FXMLLoader.load(getClass().getResource("/view/updateEvent.fxml"));
+            Stage stage = (Stage) mod.getScene().getWindow();
+            stage.close();
+            Scene scene = new Scene(root);
+            
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ConsulterEventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }
 
     @FXML
@@ -194,10 +260,169 @@ public class ConsulterEventController implements Initializable {
 
     @FXML
     private void abon(MouseEvent Formation) {
+        
     }
 
     @FXML
     private void stat(MouseEvent Formation) {
     }
+
+    @FXML
+    private void ajoutere(ActionEvent Formation) {
+         try {
+            Parent root = FXMLLoader.load(getClass().getResource("/view/ajouter_formation.fxml"));
+            Stage stage = (Stage) ajouterr.getScene().getWindow();
+            stage.close();
+            Scene scene = new Scene(root);
+            
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ConsulterEventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void cours(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/view/consulterCours.fxml"));
+            Stage stage = (Stage) ccours.getScene().getWindow();
+            stage.close();
+            Scene scene = new Scene(root);
+            
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ConsulterEventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void Imprimmer(ActionEvent event) throws DocumentException, FileNotFoundException {
+        Formation service = new Formation();
+           Document pdfReport = new Document() ;
+           PdfWriter.getInstance(pdfReport, new FileOutputStream("menu.pdf"));
+            pdfReport.open();
+            pdfReport.add(new Paragraph("Formation"));
+            pdfReport.add(Chunk.NEWLINE);
+            pdfReport.add(Chunk.NEWLINE);
+            pdfReport.add(Chunk.NEWLINE);
+            
+          
+          PdfPTable my_report_table = new PdfPTable(9);
+          
+            PdfPCell  tableCellColumn = new PdfPCell(new Phrase("nom"));
+           my_report_table.addCell(tableCellColumn);
+           tableCellColumn = new PdfPCell(new Phrase("description"));
+          my_report_table.addCell(tableCellColumn);
+          tableCellColumn = new PdfPCell(new Phrase("prix"));
+            my_report_table.addCell(tableCellColumn);
+       
+            
+            
+            double h= 0;
+            tbl.getItems().forEach((Formation e) -> {
+                
+               PdfPCell tableCell = new PdfPCell(new Phrase(e.getPrix()));
+                my_report_table.addCell(tableCell);
+                
+                
+                tableCell = new PdfPCell(new Phrase(e.getDescription()));
+                my_report_table.addCell(tableCell);
+                
+                tableCell = new PdfPCell(new Phrase(e.getNom()));
+                my_report_table.addCell(tableCell);
+                
+                
+                
+                
+                
+                 
+            });
+            /* Attach report table to PDF */
+            pdfReport.add(my_report_table);
+            pdfReport.add(Chunk.NEWLINE);
+            pdfReport.add(Chunk.NEWLINE);
+            pdfReport.add(Chunk.NEWLINE);
+            pdfReport.add(Chunk.NEWLINE);
+            pdfReport.add(Chunk.NEWLINE);
+            pdfReport.add(Chunk.NEWLINE);
+            pdfReport.add(Chunk.NEWLINE);
+            pdfReport.add(Chunk.NEWLINE);
+            pdfReport.add(Chunk.NEWLINE);
+            
+            
+            
+            pdfReport.close();
+            
+            Alert alertReservation = new Alert(Alert.AlertType.INFORMATION);
+            alertReservation.setTitle("Extraction en PDF");
+            alertReservation.setHeaderText(null);
+            alertReservation.setContentText("PDF report has been created.\nYou'll find "
+                    + "the file under: Bureau");
+            alertReservation.showAndWait();
+    }
+
+    @FXML
+    private void Sta(ActionEvent event) {
+         try {
+            Parent root = FXMLLoader.load(getClass().getResource("/view/PieChartView.fxml"));
+            Stage stage = (Stage) ajouterr.getScene().getWindow();
+            stage.close();
+            Scene scene = new Scene(root);
+            
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ConsulterEventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void gest(MouseEvent event) {
+          try {
+            Parent root = FXMLLoader.load(getClass().getResource("/view/consulterCours.fxml"));
+            Stage stage = (Stage) ge.getScene().getWindow();
+            stage.close();
+            Scene scene = new Scene(root);
+            
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ConsulterEventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void stt(MouseEvent event) {
+         try {
+            Parent root = FXMLLoader.load(getClass().getResource("/view/PieChartView.fxml"));
+            Stage stage = (Stage) st.getScene().getWindow();
+            stage.close();
+            Scene scene = new Scene(root);
+            
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ConsulterEventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     
-}
+
+    @FXML
+    private void actt(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/view/consulterEvent.fxml"));
+            Stage stage = (Stage) act.getScene().getWindow();
+            stage.close();
+            Scene scene = new Scene(root);
+            
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ConsulterEventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    }
+    
+

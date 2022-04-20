@@ -35,7 +35,7 @@ public class PIDEV extends Application {
     @Override
     public void start(Stage primaryStage) {
        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FXML.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AfficherPersonne.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             primaryStage.setTitle("AddMembre");

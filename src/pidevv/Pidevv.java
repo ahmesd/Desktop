@@ -21,6 +21,8 @@ import javafx.stage.Stage;
 public class Pidevv extends Application {
       private Stage primaryStage;
     private Parent parentPage;
+    private Stage primarStage;
+    
    
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -31,6 +33,11 @@ public class Pidevv extends Application {
         Scene scene = new Scene(parentPage);
         this.primaryStage.setScene(scene);
         this.primaryStage.show();
+    }
+      public void changeScene(String fxml) throws IOException {
+        Parent pane = FXMLLoader.load(getClass().getResource(fxml));
+        primarStage.getScene().setRoot(pane);
+    
     }
       
       

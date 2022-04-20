@@ -45,10 +45,20 @@ public class Formation {
         this.description = description;
     }
 
-    public Formation(String nom, String description, String image, int prix) {
+    public Formation(String nom, String description, String image, int prix,Date start_date,Date end_date) {
        this.nom = nom;
          this.description = description;
           this.image = image;
+           this.prix = prix;
+           this.start_date = start_date;
+             this.end_date = end_date;
+           
+ //To change body of generated methods, choose Tools | Templates.
+    }
+     public Formation(String nom,int prix , String description) {
+       this.nom = nom;
+         this.description = description;
+        
            this.prix = prix;
  //To change body of generated methods, choose Tools | Templates.
     }
@@ -137,7 +147,7 @@ public class Formation {
 
     @Override
     public String toString() {
-        return "Formation{" + "id=" + id + ", nom=" + nom + ", prix=" + prix + ", start_date=" + start_date + ", end_date=" + end_date + ", description=" + description + ", image=" + image + '}';
+        return "Formation{" + "id=" + id + ", nom=" + nom + ", prix=" + prix + ", datede=" + start_date + ", end_date=" + end_date + ", description=" + description + ", image=" + image + '}';
     }
     
     
