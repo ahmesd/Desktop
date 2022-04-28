@@ -19,7 +19,7 @@
          <font>
             <Font name="Arial Rounded MT Bold" size="16.0" />
          </font></Text>
-      <TextField fx:id="nom" layoutX="682.0" layoutY="264.0" />
+      <TextField fx:id="cimg" layoutX="864.0" layoutY="511.0" />
       <TextField fx:id="numero" layoutX="681.0" layoutY="309.0" />
       <TextField fx:id="location" layoutX="681.0" layoutY="457.0" />
       <Text fx:id="nomfor" fill="#3e6fae" layoutX="471.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom " textAlignment="CENTER" />
@@ -163,5 +163,12 @@
       </AnchorPane>
       <Button fx:id="tfphoto" layoutX="681.0" layoutY="508.0" mnemonicParsing="false" onAction="#uploadphoto" prefHeight="31.0" prefWidth="149.0" text="Upload" />
       <Text fx:id="imge" fill="#3e6fae" layoutX="464.0" layoutY="528.0" strokeType="OUTSIDE" strokeWidth="0.0" text="image" textAlignment="CENTER" />
+      <ImageView fx:id="myimg" fitHeight="150.0" fitWidth="200.0" layoutX="433.0" layoutY="539.0" pickOnBounds="true" preserveRatio="true" />
+      <TextField fx:id="nom" layoutX="681.0" layoutY="264.0" />
+      <Button fx:id="Sms" layoutX="986.0" layoutY="571.0" mnemonicParsing="false" onAction="#sms" prefHeight="25.0" prefWidth="75.0" styleClass="add1-btn" stylesheets="@../style/style.css" text="SMS" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

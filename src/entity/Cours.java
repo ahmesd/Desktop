@@ -153,7 +153,7 @@ public class Cours {
 
     @Override
     public String toString() {
-        return "Cours{" + "id=" + id + ", nom=" + nom + ", description=" + description + ", video=" + video + ", dteAjout=" + dteAjout + ", formation=" + formation + '}';
+        return "Cours{" + "id=" + id + ", nom=" + nom + ", description=" + description + ", video=" + video + ", dateajoutt=" + dteAjout + ", formations_id=" + idFormation + '}';
     }
 
     public int getIdFormation() {

@@ -55,6 +55,9 @@ public class PieChartViewController implements Initializable {
         }
         pieChart.setAnimated(true);
         pieChart.setData(list);
+         formationcrud ec = new formationcrud();
+        String s = ec.countFormation();
+        hh.setText(s);
         // TODO
     }    
 

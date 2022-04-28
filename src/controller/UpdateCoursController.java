@@ -88,7 +88,7 @@ public class UpdateCoursController implements Initializable {
     @FXML
     private void consulter_event(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/consulterEvent.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/view/consulterCours.fxml"));
             Stage stage = (Stage) update.getScene().getWindow();
             stage.close();
             Scene scene = new Scene(root);

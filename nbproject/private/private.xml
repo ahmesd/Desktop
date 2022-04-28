@@ -4,7 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/view/consulterEvent.fxml</file>
+            <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/service/MailerService.java</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/com/esprit/controller/PieChartViewController.java</file>
+            <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/controller/ListeArticlesController.java</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/view/consulterCours.fxml</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/controller/PieChartViewController.java</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/service/CoursService.java</file>
@@ -17,7 +19,9 @@
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/pidevv/mainnn.java</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/pidevv/datas.java</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/view/updateCours.fxml</file>
+            <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/controller/FXMLCoursController.java</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/pidevv/PIDEV.java</file>
+            <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/utils/SmsTwillio.java</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/view/ajouter_cours.fxml</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/entity/Cours.java</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/controller/ListData.java</file>
@@ -27,12 +31,18 @@
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/view/FXMLController.java</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/view/updateEvent.fxml</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/entity/Formation.java</file>
+            <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/utils/MailService.java</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/utils/DataValidationUtils.java</file>
+            <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/controller/CoursDetailsController.java</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/service/formationcrud.java</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/service/NewInterfacej.java</file>
+            <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/utils/Upload.java</file>
+            <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/view/FXMLCours.fxml</file>
+            <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/view/FXMLhh.fxml</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/img/notificationIcon.png</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/view/ajouter_formation.fxml</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/view/AfficherPersonne.fxml</file>
+            <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/controller/ItemBController.java</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/pidevv/Datasource.java</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/img/menu.png</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/pidevv/nb.java</file>
@@ -42,6 +52,8 @@
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/com/esprit/controller/AfficherPersonneController.java</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/service/NewInterface.java</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/controller/Ajouter_coursController.java</file>
+            <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/view/ItemB.fxml</file>
+            <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/view/CoursDetails.fxml</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/pidevv/Pidevv.java</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/view/PieChartView.fxml</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/controller/UpdateEventController.java</file>
@@ -51,6 +63,7 @@
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/controller/ListData3.java</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/controller/Ajouter_formationController.java</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/view/FXML.fxml</file>
+            <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/controller/SendsmsController.java</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/controller/ConsulterCoursController.java</file>
             <file>file:/C:/Users/Ahmed/OneDrive/Documents/NetBeansProjects/pidevv/src/style/style.css</file>
         </group>

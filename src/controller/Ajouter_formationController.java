@@ -6,6 +6,7 @@
 package controller;
 
 import entity.Formation;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
@@ -15,11 +16,16 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,14 +37,21 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javax.imageio.ImageIO;
 import pidevv.Datasource;
+import service.MailerService;
 import service.formationcrud;
 import utils.DataValidationUtils;
+import utils.SmsTwillio;
+import utils.Upload;
 
 /**
  * FXML Controller class
@@ -75,10 +88,15 @@ public class Ajouter_formationController implements Initializable {
     private Label Menu;
     @FXML
     private Label MenuClose;
+    String s;
     
      PreparedStatement preparedStatement;
     private Statement st;
     private ResultSet rs;
+   // String s;
+       private File file;
+   private Image image1;
+    String pic;
   
     Connection cnx = Datasource.getInstance().getConnection();
     formationcrud eventcru = formationcrud.getInstance();
@@ -87,6 +105,12 @@ public class Ajouter_formationController implements Initializable {
     private Button tfphoto;
     @FXML
     private Text imge;
+    @FXML
+    private ImageView myimg;
+    @FXML
+    private TextField cimg;
+    @FXML
+    private Button Sms;
 
     /**
      * Initializes the controller class.
@@ -140,7 +164,7 @@ public class Ajouter_formationController implements Initializable {
         else {
             String nom_event = nom.getText();
             int num = parseInt(numero.getText());
-            String phot=tfphoto.getText();
+            String phot=cimg.getText();
            
             String loc = location.getText();
             ZoneId defaultZoneId = ZoneId.systemDefault();
@@ -167,6 +191,38 @@ public class Ajouter_formationController implements Initializable {
                         nom.setText("");
                         numero.setText("");
                         location.setText(" ");
+                        
+                        
+                        
+          formationcrud events = new formationcrud();
+
+          //*
+          /*  int id_evenement = searchEventId(events.ConsulterEventController(), id.getSelectionModel().getSelectedItem());
+          String email = tfidu.getText();
+          ReservCrud rc = new ReservCrud();*/
+          // LocalDate myDate = tfres.getValue();
+          
+          //String d1 = myDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+          SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+          // java.util.Date parsed = format.parse(d1);
+          // java.sql.Date dd1 = new java.sql.Date(parsed.getTime());
+          // ReservEvenement re = new ReservEvenement(dd1, id_evenement, 9);
+          //Formation e = new Formation(id_evenement);
+          // ReservCrud ee = new ReservCrud();
+          //ReservEvenement reservationEvent = new ReservEvenement(dd1,e.getId(),9);
+          // if (ee.ajouterReservation(reservationEvent,e)){
+          // MailerService ms = new MailerService();
+          //ms.replyMail("ms","aaa","this is a description");
+          // System.out.println("------");
+         MailerService ms = new MailerService();
+          ms.replyMail("ahmed.dallali@esprit.tn","zaher","Bonjour Monsieur votre reservation a été acceptée");
+          //}
+          
+          //     User u = new User();
+          //   u.setEmail("nidhal.sassi@esprit.tn");
+          //         JavaMail.sendmail(u.getEmail());
+          SmsTwillio.sms (nom.getText());
+               
                         
 
 
@@ -208,14 +264,37 @@ public class Ajouter_formationController implements Initializable {
     }
 
     @FXML
-    private void uploadphoto(ActionEvent event) {
-         FileChooser F = new FileChooser();
-        F.setTitle("Choisir une image");
-        F.getExtensionFilters().addAll();
-        File f = F.showOpenDialog(slider.getScene().getWindow());
-        if(f != null){
-            tfphoto.setText(f.toString());
+    private void uploadphoto(ActionEvent event) throws IOException {
+        FileChooser fileChooser = new FileChooser();
+            file= fileChooser.showOpenDialog(null);
+             FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (.jpg)", ".JPG");
+            FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (.png)", ".PNG");
+            fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
+
+            
+            pic=(file.toURI().toString());
+         //  pic=new Upload().upload(file,"uimg");
+           pic=new Upload().upload(file,"");
+            System.out.println(pic);
+   //   image= new Image("http://localhost/uimg/"+pic);
+            cimg.setText(pic);
+
+           image1= new Image("http://localhost/FirstProject-main/public/uploads"+pic);
+           myimg.setImage(image1);
+}
+
+    @FXML
+    private void sms(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/view/sendsms.fxml"));
+            Stage stage = (Stage) consulter.getScene().getWindow();
+            stage.close();
+            Scene scene = new Scene(root);
+            
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ConsulterEventController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
 }

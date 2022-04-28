@@ -23,7 +23,7 @@
             <TableColumn fx:id="cforma" prefWidth="189.59999084472656" text="Formations" />
          </columns>
       </TableView>
-      <Button fx:id="supp" layoutX="901.0" layoutY="533.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="26.0" prefWidth="103.0" styleClass="add1-btn" stylesheets="@../style/style.css" text="Supprimer" textFill="WHITE">
+      <Button fx:id="supp" layoutX="897.0" layoutY="534.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="26.0" prefWidth="103.0" styleClass="add1-btn" stylesheets="@../style/style.css" text="Supprimer" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
@@ -157,5 +157,15 @@
          </children>
       </AnchorPane>
       <Button fx:id="ajouterr" layoutX="546.0" layoutY="534.0" mnemonicParsing="false" onAction="#ajoutere" text="ajouter" />
+      <Button fx:id="ajj" layoutX="1174.0" layoutY="534.0" mnemonicParsing="false" onAction="#ajjj" prefHeight="26.0" prefWidth="103.0" styleClass="add1-btn" stylesheets="@../style/style.css" text="aj" textFill="#fffefe">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="act" layoutX="930.0" layoutY="146.0" mnemonicParsing="false" onAction="#actt" prefHeight="26.0" prefWidth="103.0" styleClass="add1-btn" stylesheets="@../style/style.css" text="Actualiser" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

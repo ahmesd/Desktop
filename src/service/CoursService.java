@@ -79,7 +79,7 @@ public void ajouterCoursPST(Cours c){
                 list.add(new Cours(rs.getInt("id"),rs.getString("nom"), rs.getString("description"),rs.getInt("formations_id")));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(formationcrud.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CoursService.class.getName()).log(Level.SEVERE, null, ex);
         }   
             return list;
     }

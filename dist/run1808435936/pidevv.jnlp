@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="pidevv.jnlp">
+  <information>
+    <title>pidevv</title>
+    <vendor>Ahmed</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="lib\SparseBitSet-1.2.jar" size="24510" download="eager" />
+    <jar href="lib\commons-codec-1.15.jar" size="353793" download="eager" />
+    <jar href="lib\commons-collections4-4.4.jar" size="751914" download="eager" />
+    <jar href="lib\commons-compress-1.21.jar" size="1018316" download="eager" />
+    <jar href="lib\commons-io-2.11.0.jar" size="327135" download="eager" />
+    <jar href="lib\commons-logging-1.2.jar" size="61829" download="eager" />
+    <jar href="lib\commons-math3-3.6.1.jar" size="2213560" download="eager" />
+    <jar href="lib\curvesapi-1.06.jar" size="111875" download="eager" />
+    <jar href="lib\itextpdf-5.5.9.jar" size="2287148" download="eager" />
+    <jar href="lib\javax.mail.jar" size="659033" download="eager" />
+    <jar href="lib\json-20211205.jar" size="70678" download="eager" />
+    <jar href="lib\log4j-1.2.17.jar" size="489884" download="eager" />
+    <jar href="lib\log4j-api-2.17.1.jar" size="301872" download="eager" />
+    <jar href="lib\mysql-connector-java-8.0.28.jar" size="2476480" download="eager" />
+    <jar href="lib\poi-5.2.0.jar" size="2897386" download="eager" />
+    <jar href="lib\poi-examples-5.2.0.jar" size="384462" download="eager" />
+    <jar href="lib\poi-excelant-5.2.0.jar" size="28746" download="eager" />
+    <jar href="lib\poi-javadoc-5.2.0.jar" size="17853862" download="eager" />
+    <jar href="lib\poi-ooxml-5.2.0.jar" size="1958735" download="eager" />
+    <jar href="lib\poi-ooxml-full-5.2.0.jar" size="13060186" download="eager" />
+    <jar href="lib\poi-ooxml-lite-5.2.0.jar" size="5787472" download="eager" />
+    <jar href="lib\poi-scratchpad-5.2.0.jar" size="1894677" download="eager" />
+    <jar href="lib\postgresql-9.4.1209.jar" size="678049" download="eager" />
+    <jar href="lib\slf4j-api-1.7.32.jar" size="41513" download="eager" />
+    <jar href="lib\twilio-8.9.0-jar-with-dependencies.jar" size="8358946" download="eager" />
+    <jar href="lib\xmlbeans-5.0.3.jar" size="2191828" download="eager" />
+    <jar href="pidevv.jar" size="3864407" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="pidevv" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="pidevv.Pidevv"  name="pidevv" />
+  <update check="always"/>
+</jnlp>

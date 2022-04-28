@@ -88,6 +88,10 @@ public class ConsulterCoursController implements Initializable {
     private Label st;
     @FXML
     private Label dddd;
+    @FXML
+    private Button ajj;
+    @FXML
+    private Button act;
 
     /**
      * Initializes the controller class.
@@ -95,7 +99,7 @@ public class ConsulterCoursController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         CoursService evcrud = new CoursService();
-        ArrayList<Cours> ev = (ArrayList<Cours>) evcrud.afficher();
+        ArrayList<Cours> ev = (ArrayList<Cours>) evcrud.readAll();
         ObservableList<Cours> obs = FXCollections.observableArrayList(ev);
         //table.setItems(obs);
       nom.setCellValueFactory(new PropertyValueFactory<Cours,String>("nom"));
@@ -236,7 +240,7 @@ public class ConsulterCoursController implements Initializable {
     @FXML
     private void stt(MouseEvent event) {
          try {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/PieChartView.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/view/stat.fxml"));
             Stage stage = (Stage) st.getScene().getWindow();
             stage.close();
             Scene scene = new Scene(root);
@@ -253,8 +257,46 @@ public class ConsulterCoursController implements Initializable {
     @FXML
     private void ddd(MouseEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/CoursDetails.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/view/consulterCours.fxml"));
             Stage stage = (Stage) dddd.getScene().getWindow();
+            stage.close();
+            Scene scene = new Scene(root);
+            
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ConsulterEventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void ajjj(ActionEvent event) {
+        Cours ev = tbl.getSelectionModel().getSelectedItem();
+        ConsulterCoursController.nom_recup=ev.getNom();
+        ConsulterCoursController.decriptionrecup=ev.getDescription();
+        
+        
+                ConsulterCoursController.id_rec=ev.getId();
+
+        System.out.println(ev.getId());
+         try {
+            Parent root = FXMLLoader.load(getClass().getResource("/view/FXMLCours.fxml"));
+            Stage stage = (Stage) ajj.getScene().getWindow();
+            stage.close();
+            Scene scene = new Scene(root);
+            
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ConsulterEventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void actt(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/view/consulterCours.fxml"));
+            Stage stage = (Stage) act.getScene().getWindow();
             stage.close();
             Scene scene = new Scene(root);
             

@@ -84,6 +84,13 @@ public class Formation {
     public Formation(int id) {
          this.id = id; //To change body of generated methods, choose Tools | Templates.
     }
+
+    public Formation(int id, String nom, String description, String image) {
+       this.id = id;
+        this.nom = nom;
+         this.description = description;
+          this.image = image;
+    }
     
 
     public int getId() {
@@ -147,7 +154,7 @@ public class Formation {
 
     @Override
     public String toString() {
-        return "Formation{" + "id=" + id + ", nom=" + nom + ", prix=" + prix + ", datede=" + start_date + ", end_date=" + end_date + ", description=" + description + ", image=" + image + '}';
+        return "Formation{" + "id=" + id + ", nom=" + nom + ", prix=" + prix + ", datede=" + start_date + ", datefi=" + end_date + ", description=" + description + ", image=" + image + '}';
     }
     
     

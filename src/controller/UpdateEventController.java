@@ -76,6 +76,7 @@ public class UpdateEventController implements Initializable {
         prix.setText(String.valueOf(ConsulterEventController.prixrecup));
         description.setText(ConsulterEventController.decriptionrecup);
         
+        
         //ref.setText(String.valueOf(ConsulterEventController.id_rec));
         System.out.println(ConsulterEventController.date_deprecup);
     }    

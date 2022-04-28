@@ -253,4 +253,21 @@ public class formationcrud implements NewInterface {
             System.err.println(ex.getMessage());
             return null;
         }}
+     public Formation getCarById(String id) {
+        String query = "SELECT * FROM formmattion WHERE nom ='" + id + "'";
+
+        try {
+            rs = st.executeQuery(query);
+            while (rs.next()) {
+                Formation car = new Formation(rs.getInt("id"), rs.getString("nom"), rs.getString("description"), rs.getString("image"));
+                return car;
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+    
+}
+        return null;
+
+}
 }

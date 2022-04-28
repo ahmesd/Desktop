@@ -27,8 +27,8 @@ public class nb {
         //System.out.println(ps.search("jh"));
           
         CoursService ec = new CoursService();
-        System.out.println("le nombre de produits est " +ec.stat());
-       // System.out.println("le nombre de produits est " +ec.countProduct());
+       // System.out.println("le nombre de produits est " +ec.stat());
+        System.out.println( ec.readAll());
          
        
     
